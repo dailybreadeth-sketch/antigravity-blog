@@ -1,0 +1,42 @@
+name: Auto Publish
+
+on:
+  schedule:
+    # UTC 기준. KST 05:23/13:23/21:23 = UTC 20:23/04:23/12:23
+    - cron: '23 20 * * *'
+    - cron: '23 4 * * *'
+    - cron: '23 12 * * *'
+  workflow_dispatch:   # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic pytrends
+
+      - name: Run publish pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m agent.orchestrator
+
+      - name: Commit new post if any
+        run: |
+          git config user.name "antigravity-bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain site/ data/)" ]; then
+            git add site/ data/
+            git commit -m "auto: 신규 발행 $(date -u +%Y-%m-%dT%H:%M)"
+            git push
+          else
+            echo "변경 없음 — 발행 건너뜀(커밋 없음)"
+          fi
