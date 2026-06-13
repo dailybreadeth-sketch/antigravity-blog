@@ -1,4 +1,4 @@
-"""글 생성기 — LLM 호출 + GEO 포맷 강제 + 자가 검증 루프.
+"""글 생성기 — LLM 호출(Google Gemini) + GEO 포맷 강제 + 자가 검증 루프.
 생성 → 품질 게이트 통과 → 통과 시에만 Astro 마크다운 반환.
 실패 시 피드백을 넣어 최대 2회 재생성, 그래도 막히면 None 반환(발행 건너뜀).
 """
@@ -8,13 +8,13 @@ import json
 from datetime import date
 from pathlib import Path
 from dataclasses import dataclass
-from anthropic import Anthropic
+import google.generativeai as genai
 from agent import quality_gate
 
 PROMPT_CONFIG = Path(__file__).resolve().parent.parent / "config" / "prompt_config.json"
 LEDGER = Path(__file__).resolve().parent.parent / "config" / "claim_ledger.json"
 MAX_RETRIES = 2
-MODEL = "claude-opus-4-8"
+MODEL = "gemini-1.5-pro"
 
 
 @dataclass
@@ -99,25 +99,24 @@ def _extract_description(body_md: str) -> str:
     return "헤드 스키니피케이션 가이드"
 
 
-def _call_llm(client: Anthropic, system: str, user: str) -> str:
-    resp = client.messages.create(
-        model=MODEL,
-        max_tokens=4000,
-        system=system,
-        messages=[{"role": "user", "content": user}],
+def _call_llm(system: str, user: str) -> str:
+    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+    model = genai.GenerativeModel(
+        model_name=MODEL,
+        system_instruction=system
     )
-    return resp.content[0].text
+    resp = model.generate_content(user)
+    return resp.text
 
 
 def generate(topic: str) -> Article | None:
-    client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     system = _build_system_prompt()
     user = f"다음 주제로 전문 칼럼을 써라: {topic}"
 
     feedback = ""
     for attempt in range(MAX_RETRIES + 1):
         prompt = user if not feedback else f"{user}\n\n[이전 시도 차단 사유 — 반드시 고쳐라]\n{feedback}"
-        body = _call_llm(client, system, prompt)
+        body = _call_llm(system, prompt)
         gate = quality_gate.evaluate(body)
 
         if gate.approved:

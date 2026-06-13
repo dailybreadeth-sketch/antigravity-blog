@@ -22,11 +22,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install anthropic pytrends
+        run: pip install google-generativeai pytrends
 
       - name: Run publish pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python -m agent.orchestrator
 
       - name: Commit new post if any
