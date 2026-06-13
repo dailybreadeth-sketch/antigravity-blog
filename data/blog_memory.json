@@ -1,0 +1,32 @@
+{
+  "cluster_map": {
+    "hub": {
+      "title": "헤드 스키니피케이션이란?",
+      "status": "empty"
+    },
+    "spokes": {
+      "physiology": [
+        "두피 노화 메커니즘",
+        "두피 경피수분손실",
+        "두피 유수분 불균형"
+      ],
+      "symptom": [
+        "정수리 냄새 원인과 해결",
+        "두피 떡짐 원인",
+        "두피 건조 관리"
+      ],
+      "comparison": [
+        "헤어케어 vs 두피 스킨케어",
+        "워시오프 vs 리브온"
+      ],
+      "ingredient": [
+        "편백수 두피 효능",
+        "대나무수 진정",
+        "정제수 배제 처방이란"
+      ]
+    }
+  },
+  "covered_angles": [],
+  "performance_history": [],
+  "_comment": "covered_angles에 없는 spoke 주제만 신규 생성 → 중복(scaled content abuse) 방지"
+}

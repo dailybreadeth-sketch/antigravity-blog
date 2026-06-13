@@ -1,0 +1,28 @@
+{
+  "tone": {
+    "style": "전문적이지만 쉬운 대중적 언어와 근거 중심 서술의 결합",
+    "expert_term_rule": "쉬운말(전문용어) 형태로 병기"
+  },
+  "content_mix": {
+    "intro": "도입부는 대중적 생활어로 독자의 관심을 유도",
+    "body": "본문은 철저한 생리학적/학술적 근거 중심 서술"
+  },
+  "geo_optimization": {
+    "first_paragraph_direct_answer": true,
+    "markdown_comparison_table": true,
+    "faq_section": {
+      "min_count": 3,
+      "style": "질문-답변 형식"
+    }
+  },
+  "honesty_protocol": {
+    "ledger_enforcement": true,
+    "assertive_restriction": "검증되지 않은 주장은 단정을 금지하고 출처 명시 필수",
+    "unverified_numbers_ban": true
+  },
+  "tunable_weights": {
+    "honesty_score": 1.0,
+    "seo_score": 0.8,
+    "readability_score": 0.9
+  }
+}

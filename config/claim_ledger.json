@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "grades": {
+      "verified_fact": "1차 학술 출처(동료심사 논문) 확인됨 — 단정 서술 허용",
+      "sourced_claim": "검증 안 됨 또는 학술적 반증 존재 — '출처에 따르면'으로만 서술",
+      "rejected": "학술 데이터와 충돌 — 사용 금지"
+    },
+    "last_verified": "2026-06-12"
+  },
+  "claims": {
+    "두피는 피지선 밀도가 신체에서 가장 높다": {
+      "grade": "verified_fact",
+      "source": "Cotte et al., Scientific Reports 2018 (PMC6068117)",
+      "primary_evidence": "두피·이마 피지선 밀도 400~900 glands/cm²로 신체 최고 수준, 사지는 현저히 낮음",
+      "writing_rule": "단정 가능. 가능하면 '400~900개/cm²' 수치와 함께 서술"
+    },
+    "두피는 얼굴보다 6배 빠르게 노화한다": {
+      "grade": "sourced_claim",
+      "source": "미용 브랜드 자료(Harklinikken 등) — 1차 학술 출처 없음",
+      "primary_evidence": null,
+      "writing_rule": "'일부 업계 자료에 따르면'으로만 서술. 단정 절대 금지. 가능하면 회피 권장",
+      "caution": "학술 리뷰(MDPI Cosmetics 2025)는 두피 turnover가 오히려 얼굴보다 느릴 수 있다고 봄 — 단정 시 반증 위험"
+    },
+    "두피는 얼굴보다 경피수분손실(TEWL)이 매우 높다": {
+      "grade": "sourced_claim",
+      "source": "브랜드 백서 — 학술 데이터와 부분 충돌",
+      "primary_evidence": null,
+      "writing_rule": "단정 금지. 두피 부위·개인차가 크다는 점을 함께 서술",
+      "caution": "Skin Res Technol 2023(PMC10408001): 두피 TEWL은 연령·성별·부위별 편차가 크고 일관된 우위 없음"
+    },
+    "나이가 들면 두피 피지 분비가 감소하고 모발 밀도가 줄어든다": {
+      "grade": "verified_fact",
+      "source": "Lee et al., Skin Res Technol 2023 (PMC10408001)",
+      "primary_evidence": "20대 대비 50대에서 피지 분비 유의 감소(p<0.001), 모발 밀도 감소(여 157→141, 남 161→137 N/cm²)",
+      "writing_rule": "단정 가능. 출처 연구 인용 권장"
+    }
+  }
+}

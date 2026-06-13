@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "honesty": { "enabled": true, "on_fail": "block" },
+    "medical_terms": {
+      "enabled": true,
+      "on_fail": "warn",
+      "terms": ["치료", "효능", "완치", "재생", "발모", "탈모 치료"]
+    },
+    "exaggeration": {
+      "enabled": true,
+      "on_fail": "warn",
+      "terms": ["정제수 0%", "완전 무첨가", "100% 무첨가", "부작용 없음"]
+    },
+    "channel_mixing": {
+      "enabled": true,
+      "on_fail": "block",
+      "exclusive_terms": ["헤드 스키니피케이션", "헤드 바이오 케어"]
+    }
+  },
+  "publish_condition": "no_blocks"
+}

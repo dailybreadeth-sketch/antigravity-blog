@@ -1,0 +1,42 @@
+---
+const { frontmatter } = Astro.props;
+const { title, description, pubDate } = frontmatter;
+
+// 본문에서 FAQ(### 질문 / 답변) 패턴을 추출해 스키마로 변환
+const rawContent = await Astro.slots.render('default');
+const faqMatches = [...rawContent.matchAll(/<h3[^>]*>(.*?)\?<\/h3>\s*<p>(.*?)<\/p>/gs)];
+const faqSchema = faqMatches.length ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqMatches.map(m => ({
+    "@type": "Question",
+    "name": m[1].replace(/<[^>]+>/g, '').trim() + "?",
+    "acceptedAnswer": { "@type": "Answer", "text": m[2].replace(/<[^>]+>/g, '').trim() }
+  }))
+} : null;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": pubDate,
+};
+---
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+</head>
+<body>
+  <main>
+    <article>
+      <slot />
+    </article>
+  </main>
+</body>
+</html>

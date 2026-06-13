@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<html lang="ko">
+<head><meta charset="utf-8" /><title>헤드 스키니피케이션 가이드</title></head>
+<body>
+  <h1>헤드 스키니피케이션 가이드</h1>
+  <ul>
+    {posts.map(p => (
+      <li><a href={`/posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
+    ))}
+  </ul>
+</body>
+</html>
