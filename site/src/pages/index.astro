@@ -10,7 +10,7 @@ const posts = (await getCollection('posts')).sort(
   <h1>헤드 스키니피케이션 가이드</h1>
   <ul>
     {posts.map(p => (
-      <li><a href={`/posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
+      <li><a href={`${import.meta.env.BASE_URL}posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
     ))}
   </ul>
 </body>
