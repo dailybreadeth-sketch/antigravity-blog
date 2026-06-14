@@ -2,7 +2,7 @@
   "cluster_map": {
     "hub": {
       "title": "헤드 스키니피케이션이란?",
-      "status": "empty"
+      "status": "published"
     },
     "spokes": {
       "physiology": [
@@ -26,7 +26,9 @@
       ]
     }
   },
-  "covered_angles": [],
+  "covered_angles": [
+    "헤드 스키니피케이션이란?"
+  ],
   "performance_history": [],
   "_comment": "covered_angles에 없는 spoke 주제만 신규 생성 → 중복(scaled content abuse) 방지"
 }
