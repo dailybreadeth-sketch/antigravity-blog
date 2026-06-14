@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <html lang="ko">
 <head><meta charset="utf-8" /><title>헤드 스키니피케이션 가이드</title></head>
@@ -10,7 +11,7 @@ const posts = (await getCollection('posts')).sort(
   <h1>헤드 스키니피케이션 가이드</h1>
   <ul>
     {posts.map(p => (
-      <li><a href={`${import.meta.env.BASE_URL}posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
+      <li><a href={`${baseUrl}posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
     ))}
   </ul>
 </body>
