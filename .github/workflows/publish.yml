@@ -26,7 +26,7 @@ jobs:
 
       - name: Run publish pipeline
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: python -m agent.orchestrator
 
       - name: Commit new post if any

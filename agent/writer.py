@@ -100,7 +100,7 @@ def _extract_description(body_md: str) -> str:
 
 
 def _call_llm(system: str, user: str) -> str:
-    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+    genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
     model = genai.GenerativeModel(
         model_name=MODEL,
         system_instruction=system
