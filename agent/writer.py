@@ -97,7 +97,7 @@ def _extract_description(body_md: str) -> str:
         text = re.sub(r"[#*`>\-]", "", line).strip()
         if len(text) > 20:
             return text
-    return "헤드 스키니피케이션 가이드"
+    return "헤드 스키니피케이션 리포트"
 
 
 def _call_llm(system: str, user: str) -> str:
