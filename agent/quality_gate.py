@@ -34,7 +34,7 @@ def evaluate(text: str, config: dict | None = None) -> GateResult:
         result.blocks += h.blocks
         result.warnings += h.warnings
 
-    for name in ("medical_terms", "exaggeration"):
+    for name in ("medical_terms", "exaggeration", "brand_protection"):
         c = checks.get(name, {})
         if c.get("enabled"):
             found = _scan_terms(text, c.get("terms", []))

@@ -11,6 +11,11 @@
       "on_fail": "warn",
       "terms": ["정제수 0%", "완전 무첨가", "100% 무첨가", "부작용 없음"]
     },
+    "brand_protection": {
+      "enabled": true,
+      "on_fail": "block",
+      "terms": ["레알레알", "RLRL", "로스카헤드스킨"]
+    },
     "channel_mixing": {
       "enabled": true,
       "on_fail": "block",
