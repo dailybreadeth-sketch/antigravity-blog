@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 const { frontmatter } = Astro.props;
 const { title, description, pubDate } = frontmatter;
 
@@ -33,10 +35,22 @@ const articleSchema = {
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 </head>
 <body>
-  <main>
+  <header class="site-header">
+    <div class="header-wrap">
+      <a href={import.meta.env.BASE_URL} class="site-logo">
+        RLRL <span>Head Skinification</span>
+      </a>
+      <span class="category-badge">소비자 마케팅</span>
+    </div>
+  </header>
+  <main class="container">
     <article>
       <slot />
     </article>
   </main>
+  <footer class="site-footer">
+    <p>© 2026 레알레알 (RLRL). All rights reserved.</p>
+    <p>본 사이트의 콘텐츠는 학술적 근거에 기반하여 작성된 정직한 정보성 자료입니다.</p>
+  </footer>
 </body>
 </html>

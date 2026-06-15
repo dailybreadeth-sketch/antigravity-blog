@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import { getCollection } from 'astro:content';
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -6,13 +7,46 @@ const posts = (await getCollection('posts')).sort(
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <html lang="ko">
-<head><meta charset="utf-8" /><title>헤드 스키니피케이션 가이드</title></head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>헤드 스키니피케이션 가이드</title>
+</head>
 <body>
-  <h1>헤드 스키니피케이션 가이드</h1>
-  <ul>
-    {posts.map(p => (
-      <li><a href={`${baseUrl}posts/${p.slug}/`}>{p.data.title}</a> — {p.data.pubDate.toISOString().slice(0,10)}</li>
-    ))}
-  </ul>
+  <header class="site-header">
+    <div class="header-wrap">
+      <a href={import.meta.env.BASE_URL} class="site-logo">
+        RLRL <span>Head Skinification</span>
+      </a>
+      <span class="category-badge">소비자 마케팅</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="main-title">Head Skinification</h1>
+    <p class="main-subtitle">학술적 데이터와 정직한 근거로 제안하는 새로운 두피 케어 패러다임</p>
+    
+    <ul class="post-list">
+      {posts.map(p => (
+        <li>
+          <a href={`${baseUrl}posts/${p.slug}/`} class="post-link">
+            <div class="post-card">
+              <div class="post-meta">
+                <span class="post-date">{p.data.pubDate.toISOString().slice(0,10)}</span>
+                <span class="post-category">학술 가이드</span>
+              </div>
+              <h2 class="post-card-title">{p.data.title}</h2>
+              {p.data.description && <p class="post-card-desc">{p.data.description}</p>}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 레알레알 (RLRL). All rights reserved.</p>
+    <p>본 사이트의 콘텐츠는 학술적 근거에 기반하여 작성된 정직한 정보성 자료입니다.</p>
+  </footer>
 </body>
 </html>
