@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dailybreadeth-sketch.github.io/antigravity-blog/sitemap-index.xml
