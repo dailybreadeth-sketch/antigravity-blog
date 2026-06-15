@@ -5,8 +5,8 @@ on:
     branches: [main]
     paths: ['site/**']
   schedule:
-    # 매일 한국 시간 00:00 (UTC 15:00)에 자동 재빌드
-    - cron: '0 15 * * *'
+    # 8시간 간격으로 자동 재빌드 (KST 08:00, 16:00, 24:00 => UTC 23:00, 07:00, 15:00)
+    - cron: '0 23,7,15 * * *'
   workflow_dispatch:
 
 permissions:
