@@ -27,7 +27,10 @@
     }
   },
   "covered_angles": [
-    "헤드 스키니피케이션이란?"
+    "헤드 스키니피케이션이란?",
+    "두피 노화 메커니즘",
+    "두피 경피수분손실",
+    "두피 유수분 불균형"
   ],
   "performance_history": [],
   "_comment": "covered_angles에 없는 spoke 주제만 신규 생성 → 중복(scaled content abuse) 방지"

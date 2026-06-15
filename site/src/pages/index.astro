@@ -1,9 +1,10 @@
 ---
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('posts')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const today = new Date();
+const posts = (await getCollection('posts'))
+  .filter(p => p.data.pubDate <= today)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <html lang="ko">
