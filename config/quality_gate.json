@@ -19,7 +19,7 @@
     "channel_mixing": {
       "enabled": true,
       "on_fail": "block",
-      "exclusive_terms": ["헤드 스키니피케이션", "헤드 바이오 케어"]
+      "exclusive_terms": ["헤드 스키니피케이션", "헤드 마이크로바이옴"]
     }
   },
   "publish_condition": "no_blocks"
